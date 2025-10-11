@@ -64,6 +64,7 @@ See [Standalone T-Display operation](../ElectronicsGuide.md#8-optional-standalon
 
 Note: the T-Display often comes with a small Red/Black wiring harness with connector as well; it cannot be used alongside the Chainlink Buddy and should be discarded.
 
+![](https://github.com/user-attachments/assets/ca90d776-3e4b-4e59-9943-03f6655c3e4f)
 
 
 
@@ -88,7 +89,9 @@ We’ll start by connecting and testing just the Chainlink Driver, without conne
 - Connect a wire from the Chainlink Driver’s “GND” screw terminal to the “GND” screw terminal on the Chainlink Buddy
 - Connect a wire from the Chainlink Driver’s “Motor 5-12v” screw terminal to the “12V” screw terminal on the Chainlink Buddy
 - ⚠️  Never connect a battery to the T-Display’s battery connector (small white connector on the bottom of the TTGO T-Display module) when using the Chainlink Buddy! 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637365064613_PXL_20211118_023418663.jpg)
+
+![](https://github.com/user-attachments/assets/a0b0708f-717e-4ff0-b01c-bba70b16b272)
+
 
 
 **Breadboard (if you’re not using the T-Display Buddy)**
@@ -173,8 +176,7 @@ Then place the sensor PCB over the motor, and insert 2 M4x10 bolts into the moto
 
 
 Flip the assembly over and start threading a nut onto each bolt, then use an allen key to finish tightening the nuts.
-
-![](https://github.com/user-attachments/assets/dde753a1-1041-410c-a4b9-fa8bd5addea8)
+![](https://github.com/user-attachments/assets/1fbec3b4-64bb-4268-ae60-594752cdfd14)
 ![](https://github.com/user-attachments/assets/5a0c872e-00eb-49ec-969f-a85f7dcb1061)
 
 ![](https://github.com/user-attachments/assets/a70ff55a-27eb-4ce8-9be8-03ba09edd3a4)
@@ -193,7 +195,10 @@ Plug the sensor into your Chainlink Driver, and connect the Chainlink Driver to 
 When you hold up the magnet, the LED should light for one side of the magnet and not the other.
 
 ![The LED on the sensor PCB will light when the magnet is in the correct orientation](https://github.com/user-attachments/assets/a9dca1d9-0d0e-4b3e-807e-55e92aefe5ef)
+> The LED on the sensor PCB will light when the magnet is in the correct orientation
+
 ![This is the wrong orientation - the LED is not lit](https://github.com/user-attachments/assets/9c89b987-2ebd-4904-8152-f4ea99b88fc0)
+> This is the wrong orientation - the LED is not lit
 
 
 Install the magnet into the flap drum in the orientation that caused the LED to light.
@@ -228,13 +233,13 @@ The top and bottom pieces are interchangeable with each other. Find the matching
 
 Repeat that process with the bottom piece, and then attach the right side piece as well.
 
-
-![Place the backstop bolt in the center of its slot to start](https://github.com/user-attachments/assets/ff1fa112-db3c-42f6-8aad-2a73d22f0481)
-
-
 Before installing the front face, insert the M4x10 flap backstop bolt in the middle of the slot on the right side piece and secure in place with a nut. You can fine-tune the position later if desired, but the middle is usually a good starting point.
 
+![Place the backstop bolt in the center of its slot to start](https://github.com/user-attachments/assets/ff1fa112-db3c-42f6-8aad-2a73d22f0481)
+Place the backstop bolt in the center of its slot to start
+
 ![Flap backstop bolt sticks in towards the middle of the module](https://github.com/user-attachments/assets/05b6a470-f6fd-4594-9c1b-445c6fbd735d)
+Flap backstop bolt sticks in towards the middle of the module
 
 
 Now attach the front face using M4 bolts/nuts to secure it to the top and bottom pieces.
@@ -247,7 +252,7 @@ Now attach the front face using M4 bolts/nuts to secure it to the top and bottom
 
 Now you can install the flaps. The first flap you install should be blank and the bottom half of the letter “A”.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380955841_image.png)
+![](https://github.com/user-attachments/assets/64c6464c-8fd1-401d-98f0-33bb0e2f26b1)
 
 
 Install the first flap into the position shown below — 90 degrees “ahead” of the magnet on the flap drum. (this position technically isn’t critical since the home position is software-calibrated later, but it’s a nice convention to keep the modules consistent with each other)
@@ -255,11 +260,10 @@ Install the first flap into the position shown below — 90 degrees “ahead” 
 ![](https://github.com/user-attachments/assets/f07657e3-4ea5-4ef0-93bb-16fd3e7befe7)
 
 
+To install a flap, let it rest between your index and middle fingers, and press on the middle with your thumb to bend the flap. Insert one of the flap’s pins into the flap drum, then carefully align the other pin and gently release pressure from your thumb to insert the second pin as the flap unbends.
 
 ![Gently bend the flap to insert it](https://github.com/user-attachments/assets/1f73f79f-cba4-466a-91da-10aa7d61e9e3)
-
-
-To install a flap, let it rest between your index and middle fingers, and press on the middle with your thumb to bend the flap. Insert one of the flap’s pins into the flap drum, then carefully align the other pin and gently release pressure from your thumb to insert the second pin as the flap unbends.
+> Gently bend the flap to insert it
 
 Repeat with the next 51 flaps, making sure to confirm the ordering as you do so.
 
@@ -292,7 +296,8 @@ You’ll need to configure NUM_MODULES in `platformio.ini` to match the number o
 > 2) Click the “env” button at the bottom of the window and then in the dropdown at the top of the screen…
 > 3) …select “env:chainlink” as the environment - this will set up code completion and syntax highlighting for the ESP32
 > 4) in the  Platform IO sidebar, expand the “General” section, and click `Upload and Monitor` 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1693886806926_image.png)
+
+![](https://github.com/user-attachments/assets/a05ff348-9ac6-4e99-9ea6-8f27750397d9)
 
 - If you reset the ESP32, you should see the LEDs on the Chainlink Drivers blink quickly and a message in the serial monitor that loopbacks are ok. If you see a loopback error message, troubleshoot that before continuing.
 
@@ -306,7 +311,7 @@ You’ll need to configure NUM_MODULES in `platformio.ini` to match the number o
 
 **Sensors**
 
-![](https://paper-attachments.dropboxusercontent.com/s_0012998176B94D187A680336F96A7737F168EF4FF12A85A15DE924A7E7D3E44B_1627605534995_Screenshot+from+2021-07-29+17-38-43.png)
+![](https://github.com/user-attachments/assets/fe742b01-ac38-499c-9a66-9c0df9da36a6)
 
 - Plug sensor cable into corresponding 3-pin header
 - Ground (black) should be on the left, labeled “-”
