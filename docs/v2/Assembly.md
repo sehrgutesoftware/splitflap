@@ -5,27 +5,25 @@
 
 Start by removing the rails on the outside of the panel following the printed instructions, then snap apart the individual sensor boards.
 
-![Snap off the rails](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808619_Untitled_1.1.1.jpg)
-![Break apart the sensors](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808826_Untitled_1.1.2.jpg)
+![Snap off the rails](https://github.com/user-attachments/assets/7dc43abd-eb2d-48e1-9d75-38d7ca5307b9)
+![Break apart the sensors](https://github.com/user-attachments/assets/94798594-3956-457c-9944-7eb908802c60)
 
 
 You’ll probably want to use some pliers to clean up the spacer segments that were between the sensor boards.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808879_Untitled_1.1.3.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808902_Untitled_1.1.4.jpg)
+![](https://github.com/user-attachments/assets/aee4f950-1657-4ca8-9149-f547db5d1adc)
+![](https://github.com/user-attachments/assets/6e6aa732-e3dc-48e1-977a-7d642bb4bb4c)
 
 
 Then insert the right-angle headers from the side with the pins labeled (and where “MOTOR” is visible). The pin headers should extend down past the bottom of the PCB.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808980_Untitled_1.2.1.jpg)
+![](https://github.com/user-attachments/assets/efd6e9ce-992e-4b58-9436-f1ccdfb29c41)
 
 
 Flip the PCB and solder the headers in place.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290809216_Untitled_1.3.1.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290808726_Untitled_1.4.1.jpg)
-
-
+![](https://github.com/user-attachments/assets/42bd9cd7-ff77-44f4-9791-78984516ac6c)
+![](https://github.com/user-attachments/assets/6c4da269-905a-43d9-9512-75a7c5b1bb0c)
 
 
 # Electronics Part 2: Chainlink Driver & Chainlink Buddy [T-Display]
@@ -33,12 +31,12 @@ Flip the PCB and solder the headers in place.
 
 Insert and solder the connectors as shown. Note that both of the IDC connectors on the ends face the same way - notches facing left.
 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637363719721_chainlinkDrawing.png)
+![](https://github.com/user-attachments/assets/3d87f0e8-7d29-4cd8-bdf9-094483b01335)
 
 
 Insert the ribbon cable into a connector as shown, and *gently* clamp shut with a vise or pliers. Repeat with the other connector on the opposite end, making sure that both connectors face the **same** way - notches facing left.
 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637363943974_ChainlinkCableIDCAssembly.png)
+![](https://github.com/user-attachments/assets/0fb7ec7c-3cba-4c0e-96bf-d244130d39ed)
 
 
 (Not recommended, but you can optionally install the strain relief on the connectors: fold the ribbon cable back over the connector and install the plastic piece to clamp it down until it clicks. You’ll sacrifice some cable length and end up with a bulkier/taller connector, so I don’t think it’s worthwhile, especially since your cables shouldn’t be moving around much anyway.)
@@ -50,8 +48,9 @@ Solder the connectors into place (make sure the IDC connector notch faces the le
 
 **T-Display Buddy**
 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637364807000_DSC_5003_s.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637364821133_DSC_5014_s.jpg)
+![](https://github.com/user-attachments/assets/c7f3a752-202c-4917-b93b-4c45519dcde2)
+![](https://github.com/user-attachments/assets/919f9e2e-90d3-4ede-a640-c2ddf2db9ece)
+
 
 
 On the T-Display itself, you will solder the 2 rows of male headers (included in the box) to the T-Display, and then the whole module will plug into the matching female headers you soldered on the Buddy board.
@@ -72,8 +71,9 @@ Note: the T-Display often comes with a small Red/Black wiring harness with conne
 **Breadboard Buddy (alternative to T-Display Buddy)**
 If you’d prefer to use a different ESP32 module, you can use the Breadboard Buddy PCB to easily adapt the IDC cable to a breadboard.
 
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637364835081_DSC_5006.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_BBABC117AF455DD9F0525297940CD25AF9A358008ED7FF73463824486BCF5E62_1637364842028_DSC_5009_s.jpg)
+![](https://github.com/user-attachments/assets/1bfc087c-02e9-4deb-a77f-ef73282977bc)
+![](https://github.com/user-attachments/assets/03e3e7c4-720b-4a18-bee5-24193d3f922a)
+
 
 
 
@@ -96,7 +96,7 @@ If you are using a different ESP32 module with the Breadboard Buddy rather than 
 
 
 # Mechanical: Laser-cut Assembly
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719290809012_Untitled_1.5.1.jpg)
+![](https://github.com/user-attachments/assets/9bc5850b-8e9e-46d7-a3f6-c01906b74ee5)
 
 
 ⚠️⚠️⚠️
@@ -108,45 +108,45 @@ If you used acrylic parts, DO NOT FORCE THEM together if they don’t fit immedi
 
 Take an M4x10 bolt and nut and loosely assemble them on the spacer piece. Make sure the bolt can still spin somewhat freely. Set this aside.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210757_Untitled_1.6.1.jpg)
+![](https://github.com/user-attachments/assets/fd77c5ab-8d4d-42d8-95d3-cea81b99e7e2)
 
 
 Hold the 4 struts to form a box, with the stepped tab ends facing up…
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210784_Untitled_1.7.1.jpg)
+![](https://github.com/user-attachments/assets/4847b5a0-da71-4129-9aea-e9091c4f5679)
 
 
 … and then place the spacer on top with bolt facing up/out.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210866_Untitled_1.7.2.jpg)
+![](https://github.com/user-attachments/assets/a62f36a4-c5bd-436a-8a0a-4e4f67cc2d94)
 
 
 Spin the bolt/nut combo to so the nut’s edges are parallel to 2 of the strut tabs, and then place the wheel with hexagonal center hole onto the end.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292211039_Untitled_1.7.4.jpg)
+![](https://github.com/user-attachments/assets/b9b9e008-6d79-4ece-8595-e944ed243a9b)
 
 
 Then attach the other wheel to the other end’s tabs. You may need to hold the whole assembly together at this point if the laser-cut parts are a bit loose.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210924_Untitled_1.7.5.jpg)
+![](https://github.com/user-attachments/assets/86f69f9c-dc47-4a1a-9633-3a80c26a7526)
 
 
 I recommend using CA glue (with accelerator!) to permanently assemble the flap drum. My personal go-to glue is Bob Smith Industries thick CA glue ([paid affiliate link](https://amzn.to/3REVhEM), or use this [non-affiliate link](https://a.co/d/05jtD1j4)). Note: make sure you’ve installed the M4 nut+bolt earlier, as you won’t be able to install it after gluing!
 
 Apply a small dot of CA glue to each joint between the center struts and the wheel ends (8 dots in total). You will have 30 seconds to a minute of working time at this step.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210572_Untitled_1.8.1.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210652_Untitled_1.10.1.jpg)
+![](https://github.com/user-attachments/assets/4bd48f69-88fd-4d32-8bef-19328aea3053)
+![](https://github.com/user-attachments/assets/1fe7fdb8-ff59-4e99-88b7-1dcfb29301b8)
 
 
 If the assembly is somewhat loose, **make sure the wheel ends are not twisted**, as this will cause flaps to hang at an angle! See photo below for why this is problematic:
 
-![❌ AVOID TWISTING THE DRUM WHEN GLUING IT! ❌  Although you’re not installing flaps quite yet, a twisted drum will eventually look like this — flaps hang at an angle and may bind up against the sides of the front window!!!](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210724_Untitled_1.11.1.jpg)
+![❌ AVOID TWISTING THE DRUM WHEN GLUING IT! ❌  Although you’re not installing flaps quite yet, a twisted drum will eventually look like this — flaps hang at an angle and may bind up against the sides of the front window!!!](https://github.com/user-attachments/assets/d6641b01-5fa4-41ab-8741-06416aae5fdb)
 
 
 When the drum is fully assembled and you’ve ensured it’s not twisted, spray CA accelerator to quickly lock the glue in place. If the parts are particularly loose, you may want to hold the assembly together with gloved hands while you spray CA accelerator.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292211000_Untitled_1.8.2.jpg)
+![](https://github.com/user-attachments/assets/de5e5030-7959-44a6-9b84-423ec60a67c3)
 
 
 💡 **Important CA glue tip:** If you don’t use accelerator, you’ll likely end up with a white haze or residue all over the acrylic parts — this is caused by small amounts of CA glue vaporizing and curing with the moisture in the air, which then gets deposited onto your parts (and surrounding table, computer, etc!) to make a permanent white-ish haze. I’ve never had issues with CA haze/fogging when using Bob Smith Industries glue with the included accelerator spray, which is why I recommend it! ([paid affiliate link](https://amzn.to/3REVhEM), or use this [non-affiliate link](https://a.co/d/05jtD1j4))
@@ -154,7 +154,7 @@ When the drum is fully assembled and you’ve ensured it’s not twisted, spray 
 
 After waiting a few minutes for the accelerated CA glue to cure, use an allen key to tighten the internal M4 bolt and lock it in place.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719292210679_Untitled_1.9.1.jpg)
+![](https://github.com/user-attachments/assets/f8bb0357-8065-4b66-9b64-a7e8ee6cf0b6)
 
 
 
@@ -162,22 +162,22 @@ After waiting a few minutes for the accelerated CA glue to cure, use an allen ke
 
 Take the wider of the side enclosure pieces (with a rounded rectangular hole cut out of the middle) and insert the motor’s cable through the hole in the orientation shown below.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372206689_Untitled_1.12.1.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372221515_Untitled_1.12.2.jpg)
+![](https://github.com/user-attachments/assets/144d1159-13ce-48f2-86d8-3efec033a412)
+![](https://github.com/user-attachments/assets/e3d7fa5d-a40b-49e1-a414-b9a280abca51)
 
 
 Then place the sensor PCB over the motor, and insert 2 M4x10 bolts into the motor mount holes.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372564839_Untitled_1.12.3.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372662839_Untitled_1.12.4.jpg)
+![](https://github.com/user-attachments/assets/587dc552-79e4-4975-9429-f4506a779b25)
+![](https://github.com/user-attachments/assets/dde753a1-1041-410c-a4b9-fa8bd5addea8)
 
 
 Flip the assembly over and start threading a nut onto each bolt, then use an allen key to finish tightening the nuts.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372564684_Untitled_1.12.4.jpg)
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372564756_Untitled_1.12.5.jpg)
+![](https://github.com/user-attachments/assets/dde753a1-1041-410c-a4b9-fa8bd5addea8)
+![](https://github.com/user-attachments/assets/5a0c872e-00eb-49ec-969f-a85f7dcb1061)
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719372713065_Untitled_1.12.7.jpg)
+![](https://github.com/user-attachments/assets/a70ff55a-27eb-4ce8-9be8-03ba09edd3a4)
 
 ## Magnet
 
@@ -187,28 +187,28 @@ Luckily we can use the LED on the sensor PCB to help determine the right way to 
 
 Plug the sensor into your Chainlink Driver, and connect the Chainlink Driver to your ESP32/Chainlink Buddy, ensuring you’ve connected the 3.3v logic power screw terminals. 
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373078065_Untitled_1.13.1.jpg)
+![](https://github.com/user-attachments/assets/2802c27b-cd9c-459d-93fd-7bd0f1095242)
 
 
 When you hold up the magnet, the LED should light for one side of the magnet and not the other.
 
-![The LED on the sensor PCB will light when the magnet is in the correct orientation](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373078137_Untitled_1.14.2.jpg)
-![This is the wrong orientation - the LED is not lit](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373077998_Untitled_1.14.1.jpg)
+![The LED on the sensor PCB will light when the magnet is in the correct orientation](https://github.com/user-attachments/assets/a9dca1d9-0d0e-4b3e-807e-55e92aefe5ef)
+![This is the wrong orientation - the LED is not lit](https://github.com/user-attachments/assets/9c89b987-2ebd-4904-8152-f4ea99b88fc0)
 
 
 Install the magnet into the flap drum in the orientation that caused the LED to light.
 
 I’ve found that attaching the magnet to one jaw of a set of pliers and then **gently** pressing it into the flap drum works well — DO NOT FORCE IT if it requires more than a tiny bit of pressure, as you will crack the acylic; use a file to widen the hole and then try again.
 
-![Magnet stuck to pliers in correct orientation](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373459435_Untitled_1.15.1.jpg)
-![Gently pressing until flush](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373459488_Untitled_1.15.2.jpg)
+![Magnet stuck to pliers in correct orientation](https://github.com/user-attachments/assets/940501ef-9e59-4789-87be-1ad323f771f9)
+![Gently pressing until flush](https://github.com/user-attachments/assets/fed6cdb1-7a86-4679-85a3-1ba4b206bc51)
 
-![Installed magnet](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373459372_Untitled_1.15.3.jpg)
+![Installed magnet](https://github.com/user-attachments/assets/a1896f2b-16a1-49f2-847b-af04b27345c7)
 
 
 Double-check you got the magnet orientation correct when installing the flap drum onto the motor. Again, it should gently press-fit onto the motor shaft; use a file to widen the hole first if it requires too much force to press into place.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719373664063_Untitled_1.16.1.jpg)
+![](https://github.com/user-attachments/assets/5743c10b-63c1-45f6-89cc-bb294c631519)
 
 
 If the magnet is a little loose, you can add a drop of CA glue on the back side (from the inside of the drum) to lock it in place.
@@ -218,28 +218,28 @@ If the magnet is a little loose, you can add a drop of CA glue on the back side 
 
 The top and bottom pieces are interchangeable with each other. Find the matching tabs and slots of the top piece and the left side (with the motor)…
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017490_Untitled_1.17.1.jpg)
+![](https://github.com/user-attachments/assets/d62908ee-4559-40ad-9908-14d165833c11)
 
 
 … insert a nut into the notch in the top piece (I like to support it from behind with a finger as shown below) and screw in an M4x10 bolt to connect the pieces.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017547_Untitled_1.17.2.jpg)
+![](https://github.com/user-attachments/assets/0bdd09cc-ffc7-4987-9717-bf83afc7f62c)
 
 
 Repeat that process with the bottom piece, and then attach the right side piece as well.
 
 
-![Place the backstop bolt in the center of its slot to start](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017394_Untitled_1.17.3.jpg)
+![Place the backstop bolt in the center of its slot to start](https://github.com/user-attachments/assets/ff1fa112-db3c-42f6-8aad-2a73d22f0481)
 
 
 Before installing the front face, insert the M4x10 flap backstop bolt in the middle of the slot on the right side piece and secure in place with a nut. You can fine-tune the position later if desired, but the middle is usually a good starting point.
 
-![Flap backstop bolt sticks in towards the middle of the module](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017446_Untitled_1.17.4.jpg)
+![Flap backstop bolt sticks in towards the middle of the module](https://github.com/user-attachments/assets/05b6a470-f6fd-4594-9c1b-445c6fbd735d)
 
 
 Now attach the front face using M4 bolts/nuts to secure it to the top and bottom pieces.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017573_Untitled_1.18.1.jpg)
+![](https://github.com/user-attachments/assets/ffa5ab54-01f5-47f9-bc1a-7660309deaa5)
 
 
 
@@ -252,18 +252,18 @@ Now you can install the flaps. The first flap you install should be blank and th
 
 Install the first flap into the position shown below — 90 degrees “ahead” of the magnet on the flap drum. (this position technically isn’t critical since the home position is software-calibrated later, but it’s a nice convention to keep the modules consistent with each other)
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017613_Untitled_1.19.1.jpg)
+![](https://github.com/user-attachments/assets/f07657e3-4ea5-4ef0-93bb-16fd3e7befe7)
 
 
 
-![Gently bend the flap to insert it](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017298_Untitled_1.19.2.jpg)
+![Gently bend the flap to insert it](https://github.com/user-attachments/assets/1f73f79f-cba4-466a-91da-10aa7d61e9e3)
 
 
 To install a flap, let it rest between your index and middle fingers, and press on the middle with your thumb to bend the flap. Insert one of the flap’s pins into the flap drum, then carefully align the other pin and gently release pressure from your thumb to insert the second pin as the flap unbends.
 
 Repeat with the next 51 flaps, making sure to confirm the ordering as you do so.
 
-![](https://paper-attachments.dropboxusercontent.com/s_A1DD8FEE10023EEA001FB219B5E96B0C6F11F98D2D2085C80F42EAB5A5BAB282_1719380017368_Untitled_1.19.3.jpg)
+![](https://github.com/user-attachments/assets/93e0a8a1-47ae-461b-961b-c38ece7434bc)
 
 
 
