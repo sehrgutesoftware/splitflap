@@ -180,6 +180,7 @@ magnet_hole_offset = pcb_hole_to_sensor_x();
 
 motor_shaft_under_radius = 0.08;  // interference fit
 motor_slop_radius = 3;
+motor_angle = 90;
 
 // Width measured from the outside of the walls
 enclosure_wall_to_wall_width = thickness + spool_width_slop/2 + spool_width_clearance + spool_width_slop/2 + max(28byj48_mount_bracket_height() + m4_button_head_length, 4 + 28byj48_mount_bracket_height() - spool_width_slop/2) + thickness;
@@ -602,6 +603,7 @@ module enclosure_front_etch() {
 
 // holes for 28byj-48 motor, centered around motor shaft
 module motor_mount() {
+    // Bolt holes
     translate([-28byj48_mount_center_offset(), 28byj48_shaft_offset()]) {
         circle(r=motor_mount_hole_radius, $fn=30);
     }
@@ -609,6 +611,7 @@ module motor_mount() {
         circle(r=motor_mount_hole_radius, $fn=30);
     }
 
+    // Motor window
     hull() {
         x = -28byj48_chassis_radius() - motor_hole_slop/2 + motor_window_radius;
         y = [28byj48_shaft_offset() + motor_backpack_extent + motor_hole_slop/2 - motor_window_radius,
@@ -619,6 +622,13 @@ module motor_mount() {
         translate([-x, y[0], 0]) circle(r=motor_window_radius, $fn=40);
         translate([ x, y[1], 0]) circle(r=motor_window_radius, $fn=40);
     }
+
+    // PCB Connector window
+    connector_length = 20;
+    connector_width = 10;
+    connector_hole_offset = 10.5;
+    translate([-28byj48_mount_center_offset()-connector_hole_offset-connector_width/2, 28byj48_shaft_offset()])
+        square([connector_width, connector_length]);
 }
 
 module side_tabs_negative(left_side) {
@@ -673,7 +683,7 @@ module enclosure_left() {
                 circle(r=m4_hole_diameter/2, $fn=30);
 
             translate([enclosure_height_lower, enclosure_length - front_forward_offset]) {
-                rotate([0, 0, 90]) {
+                rotate([0, 0, 90+motor_angle]) {
                     motor_mount();
                 }
             }
@@ -736,15 +746,6 @@ module enclosure_left_etch() {
         translate([enclosure_indicator_position_y, enclosure_length - enclosure_indicator_inset])
             rotate([0, 0, -90])
                 triangle(enclosure_indicator_size, center=true);
-}
-
-module shaft_centered_motor_hole() {
-    margin = 5;
-    width = 28byj48_mount_center_offset()*2 + 3.5*2 + margin*2;
-    length = 18 + 14 + margin*2;
-
-    translate([-width/2, -(margin + 18 + 8)])
-        square([width, length]);
 }
 
 module enclosure_right() {
@@ -1116,7 +1117,7 @@ module split_flap_3d(front_flap_index, include_connector, include_front_panel=tr
     if (render_pcb) {
         translate([enclosure_wall_to_wall_width - thickness - 28byj48_mount_bracket_height() - eps, 0, 0]) {
             rotate([0, -90, 0]) {
-                rotate([0, 0, -90]) {
+                rotate([0, 0, -90+motor_angle]) {
                     pcb(pcb_to_spool);
                 }
             }
@@ -1201,9 +1202,11 @@ module split_flap_3d(front_flap_index, include_connector, include_front_panel=tr
         translate([enclosure_wall_to_wall_width - thickness - 28byj48_mount_bracket_height(), 0, 0]) {
 
             rotate([90, 0, 0]) {
-                rotate([0, -90, 0]) {
+                rotate([0, -90, 0])
+                rotate([0, 0, motor_angle])
                     Stepper28BYJ48();
-                }
+
+                rotate([-motor_angle, 0, 0])
                 translate([0, -28byj48_shaft_offset(), 0]) {
                     translate([0, 0, -28byj48_mount_center_offset()]) {
                         rotate([0, 90, 0]) {
