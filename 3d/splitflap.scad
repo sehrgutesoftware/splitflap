@@ -58,6 +58,7 @@ render_front_panel = true;
 enable_connectors = true;
 enable_alignment_bar = true;
 enable_mounting_holes = true;
+enable_front_mounting_holes = true;
 enable_source_info = true;
 
 // Panelization:
@@ -180,12 +181,17 @@ magnet_hole_offset = pcb_hole_to_sensor_x();
 motor_shaft_under_radius = 0.08;  // interference fit
 motor_slop_radius = 3;
 
-
 // Width measured from the outside of the walls
 enclosure_wall_to_wall_width = thickness + spool_width_slop/2 + spool_width_clearance + spool_width_slop/2 + max(28byj48_mount_bracket_height() + m4_button_head_length, 4 + 28byj48_mount_bracket_height() - spool_width_slop/2) + thickness;
 
+
+front_mounting_hole_radius = m4_hole_diameter;
+front_mounting_hole_window_distance = 15; // distance from edge of window to center of mounting hole
+front_mounting_hole_inset = 20; // inset from the top/bottom edges
+enclosure_extra_width_for_mounting_holes = enable_front_mounting_holes ? (front_mounting_hole_radius + (front_mounting_hole_window_distance-15) + thickness) * 2 : 0;
+
 // Width of the front panel
-enclosure_width = enclosure_wall_to_wall_width + 28byj48_chassis_height() + 28byj48_chassis_height_clearance - thickness - 28byj48_mount_bracket_height();
+enclosure_width = enclosure_wall_to_wall_width + 28byj48_chassis_height() + 28byj48_chassis_height_clearance - thickness - 28byj48_mount_bracket_height() + enclosure_extra_width_for_mounting_holes;
 front_window_upper_base = (flap_height - flap_pin_width/2);
 front_window_overhang = 1;
 front_window_upper = front_window_upper_base - front_window_overhang;
@@ -552,6 +558,20 @@ module enclosure_front_cutouts_2d(tool_diameter=0) {
     // Front upper tabs
     translate([0, enclosure_height - thickness * 0.5 - enclosure_vertical_inset, 0])
         front_tabs_negative(upper=true, tool_diameter=tool_diameter);
+
+    // Front mounting holes
+    if (enable_front_mounting_holes) {
+        for (x = [0, 1]) {
+            for (y = [-1, 1]) {
+                translate([
+                    front_window_right_inset - front_mounting_hole_window_distance + x*(front_window_width+2*front_mounting_hole_window_distance),
+                    enclosure_height_lower - front_window_lower + front_window_height/2 + y * (front_window_height/2 - front_mounting_hole_inset),
+                ]) {
+                    circle(r=front_mounting_hole_radius/2, $fn=30);
+                }
+            }
+        }
+    }
 }
 
 module enclosure_front() {
