@@ -625,7 +625,7 @@ module motor_mount() {
 
     // PCB Connector window
     connector_length = 20;
-    connector_width = 10;
+    connector_width = 9;
     connector_hole_offset = 10.5;
     translate([-28byj48_mount_center_offset()-connector_hole_offset-connector_width/2, 28byj48_shaft_offset()])
         square([connector_width, connector_length]);
