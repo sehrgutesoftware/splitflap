@@ -377,9 +377,10 @@ module spool_axle() {
                 cylinder(h=gap, r=spool_bearing_inner_bush_radius, $fn=30);
         }
         // press fit motor shaft
-        translate([0, 0, spool_axle_length])
+        translate([0, 0, spool_axle_length-10])
         scale([1, 1, 10])
         rotate([0, 0, 90])
+            linear_extrude(2)
             motor_shaft();
 
         // bore for M4 bolt
