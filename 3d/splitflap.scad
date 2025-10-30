@@ -1245,6 +1245,7 @@ if (render_3d) {
     rotate([0, 180, 0])
         spool_axle();
 } else {
+    projection()
     laser_mirror() {
         panel_height = enclosure_length + kerf_width + enclosure_length_right + kerf_width + enclosure_width + kerf_width + kerf_width;
         projection_renderer(render_index=render_index, render_etch=render_etch, kerf_width=kerf_width, panel_height=panel_height, panel_horizontal=panel_horizontal, panel_vertical=panel_vertical) {
@@ -1273,7 +1274,7 @@ if (render_3d) {
                     }
 
             front_panel_origin = [enclosure_height_lower - front_window_lower + kerf_width,
-                               front_panel_offset - front_window_right_inset - front_window_width + kerf_width];
+                               front_panel_offset - front_window_right_inset - front_window_width + kerf_width + thickness];
 
             // Pack inside the front panel window:
             // - top and bottom enclosure
@@ -1282,7 +1283,7 @@ if (render_3d) {
             translate(front_panel_origin) {
                 translate([0, kerf_width])
                     enclosure_top();
-                translate([0, kerf_width+enclosure_length_right+kerf_width]) {
+                translate([0, 2*kerf_width+enclosure_length_right]) {
                     enclosure_bottom();
                     laser_etch()
                         translate([-thickness + side_tab_length, 0])
