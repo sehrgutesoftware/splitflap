@@ -33,6 +33,7 @@ include<m4_dimensions.scad>;
 // ##### RENDERING OPTIONS #####
 
 render_3d = true;
+render_3d_parts = false;
 
 // 3d parameters:
 render_enclosure = 1; // 0=invisible; 1=translucent; 2=opaque color;
@@ -156,17 +157,7 @@ front_forward_offset = flap_pitch_radius + flap_thickness/2;
 
 spool_width = flap_width - flap_notch_depth*2 + flap_width_slop + thickness*2;  // spool width, outside face (spool to spool)
 spool_width_clearance = max(spool_width, flap_width + flap_width_slop);  // width clearance for the spool, either for the spool itself or the flaps
-
-//legacyAssert(spool_width >= flap_width, "Flap is wider than spool!");
-spool_strut_num_joints = 3;
-spool_strut_tab_width=8;
-spool_strut_tab_width_narrow=6;
-spool_strut_tab_outset=8;
-spool_strut_width = (spool_strut_tab_outset + thickness/2) * 2;
-spool_strut_length = spool_width;
-spool_strut_inner_length = spool_width - 3 * thickness;
-
-spool_strut_exclusion_radius = sqrt((spool_strut_tab_outset+thickness/2)*(spool_strut_tab_outset+thickness/2) + (spool_strut_tab_width/2)*(spool_strut_tab_width/2));
+spool_axle_length=spool_width-2*thickness;
 
 m4_axle_hole_diameter = 4.3;    // Slightly closer fit than the standard m4_hole_diameter, since a loose fit here will cause the spool to sit at a slight angle
 
@@ -310,7 +301,6 @@ echo(enclosure_wall_to_wall_width=enclosure_wall_to_wall_width);
 echo(enclosure_length=enclosure_length);
 echo(enclosure_length_right=enclosure_length_right);
 echo(enclosure_length_real=enclosure_length+thickness);
-echo(spool_strut_inner_length=spool_strut_inner_length);
 echo(front_window_width=front_window_width);
 echo(front_window_upper=front_window_upper);
 echo(front_window_lower=front_window_lower);
@@ -371,7 +361,6 @@ module zip_tie_holes() {
 }
 
 module spool_axle() {
-    axle_length=spool_strut_length-2*thickness;
     gap = spool_width_slop/2;
     bolt_length = thickness+gap+thickness+10;
     nut_position = thickness+5 - m4_nut_length_padded;
@@ -379,7 +368,7 @@ module spool_axle() {
     difference() {
         union() {
             // main body of the axle
-            cylinder(h=axle_length, r=spool_axle_radius, $fn=30);
+            cylinder(h=spool_axle_length, r=spool_axle_radius, $fn=30);
             // hex joint with spool side
             translate([0, 0, -thickness])
                 cylinder(h=thickness, r=m4_nut_width_corners_padded/2, $fn=6);
@@ -388,7 +377,7 @@ module spool_axle() {
                 cylinder(h=gap, r=spool_bearing_inner_bush_radius, $fn=30);
         }
         // press fit motor shaft
-        translate([0, 0, axle_length])
+        translate([0, 0, spool_axle_length])
         scale([1, 1, 10])
         rotate([0, 0, 90])
             motor_shaft();
@@ -1251,9 +1240,13 @@ if (render_3d) {
         translate([-enclosure_width/2 + (-(render_units-1) / 2 + i)*(enclosure_width + render_unit_separation), 0, 0])
             split_flap_3d(get_flap_index_for_letter(render_string[render_units - 1 - i]), include_connector=(i != render_units - 1));
     }
+} else if (render_3d_parts) {
+    translate([0, 0, spool_axle_length])
+    rotate([0, 180, 0])
+        spool_axle();
 } else {
     laser_mirror() {
-        panel_height = enclosure_length + kerf_width + enclosure_length_right + kerf_width + enclosure_width + kerf_width + spool_strut_width + kerf_width;
+        panel_height = enclosure_length + kerf_width + enclosure_length_right + kerf_width + enclosure_width + kerf_width + kerf_width;
         projection_renderer(render_index=render_index, render_etch=render_etch, kerf_width=kerf_width, panel_height=panel_height, panel_horizontal=panel_horizontal, panel_vertical=panel_vertical) {
             // Left Side Panel
             translate([0, 0]) {
