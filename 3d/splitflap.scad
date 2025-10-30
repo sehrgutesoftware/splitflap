@@ -37,11 +37,11 @@ render_3d_parts = false;
 
 // 3d parameters:
 render_enclosure = 1; // 0=invisible; 1=translucent; 2=opaque color;
-render_flaps = 2; // 0=invisible; 1=front flap only; 2=all flaps
+render_flaps = 0; // 0=invisible; 1=front flap only; 2=all flaps
 render_flap_area = 0; // 0=invisible; 1=collapsed flap exclusion; 2=collapsed+extended flap exclusion
-render_letters = 2;  // 0=invisible; 1=front flap only; 2=all flaps
+render_letters = 1;  // 0=invisible; 1=front flap only; 2=all flaps
 
-render_message = "Ag";
+render_message = "1";
 
 render_unit_separation = 0;
 render_spool = true;
@@ -56,8 +56,8 @@ render_2d_mirror = false;
 render_home_indicator_as_cut = false;
 render_front_panel = true;
 
-enable_connectors = true;
-enable_alignment_bar = true;
+enable_connectors = false;
+enable_alignment_bar = false;
 enable_mounting_holes = true;
 enable_front_mounting_holes = true;
 enable_source_info = true;
@@ -81,7 +81,7 @@ spool_horizontal_explosion = lookup(spool_explosion, [
     [1, 8],
 ]);
 
-num_flaps = 52;
+num_flaps = 24;
 echo(num_flaps=num_flaps);
 
 // Ponoko kerf values are 0.2 mm for MDF and acrylic (all thicknesses)
@@ -134,7 +134,7 @@ render_string = is_undef(render_flap_index) ? render_message : character_list[re
 render_units = len(render_string);
 
 flap_hole_radius = (flap_pin_width + 0.8) / 2;
-flap_hole_separation = 1.2;  // additional spacing between hole edges
+flap_hole_separation = 2.4;  // additional spacing between hole edges
 flap_gap = (flap_hole_radius * 2 - flap_pin_width) + flap_hole_separation;
 
 flap_spool_outset = 0.8;
@@ -196,7 +196,7 @@ enclosure_vertical_clearance_top = 5; // gap between top of flaps and top of enc
 enclosure_vertical_clearance_bottom = 1; // gap between bottom of flaps and bottom of enclosure
 enclosure_vertical_inset = max(thickness*1.5, m4_nut_width_corners_padded/2); // distance from top of sides to top of the top piece
 enclosure_height_upper = exclusion_radius + enclosure_vertical_clearance_top + thickness + enclosure_vertical_inset;
-enclosure_height_lower = flap_pitch_radius + flap_height + enclosure_vertical_clearance_bottom + thickness + enclosure_vertical_inset;
+enclosure_height_lower = flap_pitch_radius + flap_height + enclosure_vertical_clearance_bottom + thickness + enclosure_vertical_inset + 5;
 enclosure_height = enclosure_height_upper + enclosure_height_lower;
 
 enclosure_horizontal_rear_margin = 2; // minumum distance between the farthest feature and the rear

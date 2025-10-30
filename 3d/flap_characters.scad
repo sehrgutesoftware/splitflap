@@ -1,3 +1,3 @@
 
-character_list = " ABCDEFGHIJKLMNOPQRSTUVWXYZg0123456789r.?-$'#yp,!@&w";
+character_list = " 0123456789.-$#abcdefghi";
 function get_character_list() = character_list;
