@@ -28,7 +28,7 @@ use<fonts/Epilogue/Epilogue-VariableFont_wght.ttf>;
 // Configurable parameters
 // -----------------------
 
-font_preset = "Epilogue";       // See available presets below
+font_preset = "VV";       // See available presets below
 letter_gap_comp = true;         // Shifts letter positions to compensate for gap between flaps
 
 // ---------------------------
