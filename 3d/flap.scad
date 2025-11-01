@@ -107,6 +107,7 @@ module _draw_letter(letter, flap_gap) {
     offset_x = is_undef(overrides[1]) ? get_font_setting("offset_x") : get_font_setting("offset_x") + overrides[1];
     offset_y = is_undef(overrides[2]) ? get_font_setting("offset_y") : get_font_setting("offset_y") + overrides[2];
     thickness_offset = is_undef(overrides[5]) ? (is_undef(get_font_setting("thickness_offset")) ? 0 : get_font_setting("thickness_offset")) : overrides[5];
+    svg_dir = get_font_setting("svg_dir");
 
     color_index = search([letter], color_list);
     if (len(color_index) > 0 && is_num(color_index[0])) {
@@ -117,6 +118,11 @@ module _draw_letter(letter, flap_gap) {
         translate([0, color_offset_y_with_default]) {
             square([flap_width - flap_notch_depth * 2 - 4, (flap_height * 2 + flap_gap) * color_height_with_default], center=true);
         }
+    } else if (is_string(svg_dir)) {
+        svg_path = str(svg_dir, "/", letter, ".svg");
+        translate([offset_x, offset_y])
+        scale([width, height, 0])
+            import(svg_path, center=true, $fn=letter_facet_number, convexity=10);
     } else {
         translate([0, -flap_height * height, 0]) {  // valign compensation
             scale([width, 1, 1]) {

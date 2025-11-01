@@ -141,6 +141,14 @@ _font_settings = [
         // "color_offset_y", 1.4,
     ],
 
+    "VV", [
+        "svg_dir", "../../svg-font",
+        "height", 1,
+        "width", 1,
+        "offset_x", 0,
+        "offset_y", 0,
+    ],
+
     "PTSansNarrow", [
         "font", "PTSansNarrow",
         "height", 0.7,
