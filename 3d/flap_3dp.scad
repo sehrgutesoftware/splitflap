@@ -23,21 +23,26 @@ generateText = false; // If generateFullFlap is false, this controls what part o
 generateFrontText = true; // If generateText is true, this controls generation of the front text
 generateBackText = true; // If generateText is true, this controls generation of the back text
 
+flipOdd = true; // If true, odd-numbered flaps are flipped upside down
+
 flap_number = 0;
 
 flap_gap = get_flap_gap();
-if (generateFullFlap) {
-	// Generate the full flap using the standard function
-    flap_with_letters([0,0,0], [1,1,1], flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
-} else {
-    if (generateText == false) {
-		// Generate just the flap STL with the letters removed
-        difference() {
-            flap_with_letters([0,0,0], [1,1,1], front_letter=false, back_letter=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
-            flap_with_letters([0,0,0], [1,1,1], flap=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
-        }
+
+y_rotation = flipOdd && flap_number % 2 == 1 ? 180 : 0;
+rotate([0, y_rotation, 0])
+    if (generateFullFlap) {
+    	// Generate the full flap using the standard function
+        flap_with_letters([0,0,0], [1,1,1], flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
     } else {
-		// Generate just the letters STL
-        flap_with_letters([0,0,0], [1,1,1], front_letter=generateFrontText, back_letter=generateBackText, flap=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
+        if (generateText == false) {
+    		// Generate just the flap STL with the letters removed
+            difference() {
+                flap_with_letters([0,0,0], [1,1,1], front_letter=false, back_letter=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
+                flap_with_letters([0,0,0], [1,1,1], flap=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
+            }
+        } else {
+    		// Generate just the letters STL
+            flap_with_letters([0,0,0], [1,1,1], front_letter=generateFrontText, back_letter=generateBackText, flap=false, flap_index=flap_number, flap_gap=flap_gap, bleed=0, print_3d=true);
+        }
     }
-}

@@ -64,6 +64,12 @@ if __name__ == "__main__":
         help="Generate a single STL file for the front and back letters (only used if --single-stl is not set)",
     )
     parser.add_argument(
+        "--flip-odd",
+        action="store_true",
+        default=False,
+        help="Flip odd-numbered flaps upside-down (so each full character faces either the print bed or away from it)",
+    )
+    parser.add_argument(
         "--parallelism",
         type=int,
         help="How many OpenSCAD exports to run in parallel. Defaults to CPU count if unspecified.",
@@ -81,6 +87,9 @@ if __name__ == "__main__":
 
     if args.vertical_keepout_clip:
         extra_variables["vertical_keepout_mode"] = 2
+
+    if args.flip_odd:
+        extra_variables["flipOdd"] = True
 
     output_directory = os.path.join(source_parts_dir, "build", "flap_3dp")
     rmtree(output_directory, ignore_errors=True)
