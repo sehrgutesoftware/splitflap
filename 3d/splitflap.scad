@@ -185,7 +185,7 @@ enclosure_extra_width_for_mounting_holes = enable_front_mounting_holes ? (front_
 // Width of the front panel
 enclosure_width = enclosure_wall_to_wall_width + 28byj48_chassis_height() + 28byj48_chassis_height_clearance - thickness - 28byj48_mount_bracket_height() + enclosure_extra_width_for_mounting_holes;
 front_window_upper_base = (flap_height - flap_pin_width/2);
-front_window_overhang = 1;
+front_window_overhang = 2;
 front_window_upper = front_window_upper_base - front_window_overhang;
 front_window_lower = sqrt(outer_exclusion_radius*outer_exclusion_radius - front_forward_offset*front_forward_offset);
 front_window_height = front_window_lower+front_window_upper;
