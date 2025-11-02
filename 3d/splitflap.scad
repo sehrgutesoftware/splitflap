@@ -381,16 +381,16 @@ module spool_axle() {
         scale([1, 1, 10])
         rotate([0, 0, 90])
             linear_extrude(2)
-            motor_shaft();
+            motor_shaft(tolerance=0.15);
 
         // bore for M4 bolt
         translate([0, 0, -thickness-gap-1])
             cylinder(h=bolt_length+1, r=m4_axle_hole_diameter/2, $fn=30);
             translate([0, 0, nut_position])
                 union() {
-                    cylinder(h=nut_slot_width, r=m4_nut_width_corners_padded/2+1, $fn=6);
+                    cylinder(h=nut_slot_width, r=m4_nut_width_corners_padded/2+0.2, $fn=6);
                     translate([spool_axle_radius/-2, 0, nut_slot_width/2])
-                    cube([spool_axle_radius, m4_nut_width_corners_padded+0.6, nut_slot_width], center=true);
+                    cube([spool_axle_radius, m4_nut_width_corners_padded-0.8, nut_slot_width], center=true);
                 }
     }
 }
@@ -428,11 +428,11 @@ module flap_spool_etch() {
 }
 
 // double-flatted motor shaft of 28byj-48 motor (2D)
-module motor_shaft(slot=false) {
+module motor_shaft(slot=false, tolerance=0) {
     union() {
         intersection() {
-            circle(r=28byj48_shaft_radius()-motor_shaft_under_radius, $fn=50);
-            square([28byj48_shaft_radius()*2, 3], center=true);
+            circle(r=28byj48_shaft_radius()-motor_shaft_under_radius+tolerance, $fn=50);
+            square([(28byj48_shaft_radius()+tolerance)*2, 3+2*tolerance], center=true);
         }
         if (slot) {
             square([28byj48_shaft_radius()/3, 28byj48_shaft_radius()*4], center=true);
