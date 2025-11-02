@@ -16,7 +16,7 @@
 
 flap_width = 108;
 flap_height = 86;
-flap_thickness = 1; // 30 mil
+flap_thickness = .8; // 30 mil
 flap_corner_radius = 3.1; // 2.88-3.48mm (used just for display)
 
 flap_notch_height_auto = false;
@@ -26,4 +26,4 @@ flap_notch_height = (flap_notch_height_auto == true) ? sqrt(spool_outer_radius*s
 
 flap_notch_depth = 3.2;
 
-flap_pin_width = 1.4;
+flap_pin_width = 2.0;

@@ -134,7 +134,7 @@ render_string = is_undef(render_flap_index) ? render_message : character_list[re
 render_units = len(render_string);
 
 flap_hole_radius = (flap_pin_width + 0.8) / 2;
-flap_hole_separation = 2.4;  // additional spacing between hole edges
+flap_hole_separation = 1.5;  // additional spacing between hole edges
 flap_gap = (flap_hole_radius * 2 - flap_pin_width) + flap_hole_separation;
 
 flap_spool_outset = 0.8;
