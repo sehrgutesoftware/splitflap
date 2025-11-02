@@ -36,7 +36,7 @@ vertical_keepout_mode = 1;              // 0=ignore; 1=highlight; 2=cut
 vertical_keepout_size_factor = 1.1;     // Expand calculated keepout region by this factor. 1=no expansion, 1.5=50% expansion, etc
 
 vertical_keepout_size = get_flap_arc_separation() * vertical_keepout_size_factor;
-font_extrusion_3d = flap_thickness/2;
+font_extrusion_3d = 0.2;
 font_extrusion = 0.1;
 
 function get_flap_index_for_letter(letter) = search(letter, character_list)[0];
