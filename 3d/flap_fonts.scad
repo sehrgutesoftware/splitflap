@@ -147,6 +147,8 @@ _font_settings = [
         "width", 1,
         "offset_x", 0,
         "offset_y", 0,
+        "color_height", 1,
+        "color_offset_y", 0,
     ],
 
     "PTSansNarrow", [

@@ -23,7 +23,8 @@ use<splitflap.scad>;
 
 character_list = get_character_list();
 color_list = [
-    ["X", [255, 255, 255] / 255], // "#e63946
+    ["x", [255, 255, 255] / 255],
+    [" ", [0, 0, 0] / 255],
 ];
 
 
