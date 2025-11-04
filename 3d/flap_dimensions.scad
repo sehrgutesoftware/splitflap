@@ -16,7 +16,7 @@
 
 flap_width = 108;
 flap_height = 86;
-flap_thickness = .8; // 30 mil
+flap_thickness = .6;
 flap_corner_radius = 3.1; // 2.88-3.48mm (used just for display)
 
 flap_notch_height_auto = false;
