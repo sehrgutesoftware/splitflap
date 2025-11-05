@@ -28,7 +28,7 @@
 28byj48_shaft_radius = 5/2;
 28byj48_shaft_height = 10;
 28byj48_shaft_slotted_width = 3;
-28byj48_shaft_slotted_height = 6;
+28byj48_shaft_slotted_height = 6.6;
 
 28byj48_backpack_width = 14.6;
 28byj48_backpack_extent = 18; // seen values from 17-18
@@ -38,11 +38,14 @@
 function 28byj48_mount_bracket_height() = 28byj48_mount_bracket_height;
 function 28byj48_shaft_radius() = 28byj48_shaft_radius;
 function 28byj48_shaft_collar_radius() = 28byj48_shaft_collar_radius;
+function 28byj48_shaft_collar_height() = 28byj48_shaft_collar_height;
 function 28byj48_mount_center_offset() = 28byj48_mount_center_offset;
 function 28byj48_chassis_radius() = 28byj48_chassis_radius;
 function 28byj48_shaft_offset() = 28byj48_shaft_offset;
 function 28byj48_chassis_height() = 28byj48_chassis_height;
 function 28byj48_backpack_extent() = 28byj48_backpack_extent;
+function 28byj48_shaft_height() = 28byj48_shaft_height;
+function 28byj48_shaft_slotted_height() = 28byj48_shaft_slotted_height;
 
 // Basic 28BYJ-48 model based on various dimensioned drawings.
 // Origin is centered on the shaft, on the front face of the motor, with the shaft in the +z direction

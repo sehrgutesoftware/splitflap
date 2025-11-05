@@ -157,7 +157,8 @@ front_forward_offset = flap_pitch_radius + flap_thickness/2;
 
 spool_width = flap_width - flap_notch_depth*2 + flap_width_slop + thickness*2;  // spool width, outside face (spool to spool)
 spool_width_clearance = max(spool_width, flap_width + flap_width_slop);  // width clearance for the spool, either for the spool itself or the flaps
-spool_axle_length=spool_width-2*thickness;
+spool_axle_length = spool_width-2*thickness;
+spool_gap_per_side = (spool_width_clearance - spool_width + spool_width_slop) / 2;
 
 m4_axle_hole_diameter = 4.3;    // Slightly closer fit than the standard m4_hole_diameter, since a loose fit here will cause the spool to sit at a slight angle
 
@@ -175,6 +176,7 @@ motor_angle = 90;
 
 // Width measured from the outside of the walls
 enclosure_wall_to_wall_width = thickness + spool_width_slop/2 + spool_width_clearance + spool_width_slop/2 + max(28byj48_mount_bracket_height() + m4_button_head_length, 4 + 28byj48_mount_bracket_height() - spool_width_slop/2) + thickness;
+enclosure_wall_to_wall_inner_width = enclosure_wall_to_wall_width - 2*thickness;
 
 
 front_mounting_hole_radius = m4_hole_diameter;
@@ -257,6 +259,10 @@ alignment_bar_fillet_radius = 1.25;
 alignment_bar_cutout_width = alignment_bar_diameter + (2 * alignment_bar_clearance);
 alignment_bar_center = (enclosure_length - enclosure_length_right) - alignment_bar_cutout_width/2;
 
+spool_motor_gap = enclosure_wall_to_wall_inner_width - spool_width - spool_gap_per_side - 28byj48_mount_bracket_height();
+motor_shaft_into_spool = 28byj48_shaft_height() - spool_motor_gap;
+spool_spacer_height = spool_motor_gap - 28byj48_shaft_collar_height() - 0.5;
+spool_spacer_r = 28byj48_shaft_collar_radius()-0.5;
 
 // Exported values
 // (Functions allow other files to reference these values when this file is 'used' and not 'included')
@@ -361,20 +367,20 @@ module zip_tie_holes() {
 }
 
 module spool_axle() {
-    gap = spool_width_slop/2;
+    gap = spool_gap_per_side;
     bolt_length = thickness+gap+thickness+10;
     nut_position = thickness+5 - m4_nut_length_padded;
     nut_slot_width = m4_nut_length_padded+1;
     difference() {
         union() {
             // main body of the axle
-            cylinder(h=spool_axle_length, r=spool_axle_radius, $fn=30);
+            cylinder(h=spool_axle_length, r=spool_axle_radius, $fn=60);
             // hex joint with spool side
             translate([0, 0, -thickness])
                 cylinder(h=thickness, r=m4_nut_width_corners_padded/2, $fn=6);
             // spacer for bearing
             translate([0, 0, -(thickness+gap)])
-                cylinder(h=gap, r=spool_bearing_inner_bush_radius, $fn=30);
+                cylinder(h=gap, r=spool_bearing_inner_bush_radius, $fn=60);
         }
         // press fit motor shaft
         translate([0, 0, spool_axle_length-10])
@@ -385,13 +391,26 @@ module spool_axle() {
 
         // bore for M4 bolt
         translate([0, 0, -thickness-gap-1])
-            cylinder(h=bolt_length+1, r=m4_axle_hole_diameter/2, $fn=30);
+            cylinder(h=bolt_length+1, r=m4_axle_hole_diameter/2, $fn=60);
             translate([0, 0, nut_position])
                 union() {
-                    cylinder(h=nut_slot_width, r=m4_nut_width_corners_padded/2+0.2, $fn=6);
+                    cylinder(h=nut_slot_width, r=m4_nut_width_corners_padded/2, $fn=6);
                     translate([spool_axle_radius/-2, 0, nut_slot_width/2])
-                    cube([spool_axle_radius, m4_nut_width_corners_padded-0.8, nut_slot_width], center=true);
+                    cube([spool_axle_radius, m4_nut_width_corners_padded-1.2, nut_slot_width], center=true);
                 }
+    }
+}
+
+module spool_spacer() {
+    exposed_slotted_height = 28byj48_shaft_slotted_height() - motor_shaft_into_spool;
+    tolerance=0.15;
+    difference() {
+        cylinder(r=spool_spacer_r, h=spool_spacer_height, $fn=60);
+        translate([0, 0, exposed_slotted_height])
+            cylinder(r=28byj48_shaft_radius()-motor_shaft_under_radius+tolerance, h=spool_spacer_height, $fn=60);
+        translate([0, 0, -1])
+            linear_extrude(exposed_slotted_height+1.1)
+                motor_shaft(tolerance=tolerance);
     }
 }
 
@@ -1185,6 +1204,11 @@ module split_flap_3d(front_flap_index, include_connector, include_front_panel=tr
                     spool_axle();
                 }
             }
+            translate([spool_width, 0, 0]) {
+                rotate([0, 90, 0]) {
+                    spool_spacer();
+                }
+            }
         }
     }
 
@@ -1245,6 +1269,10 @@ if (render_3d) {
     translate([0, 0, spool_axle_length])
     rotate([0, 180, 0])
         spool_axle();
+
+    translate([spool_axle_radius + spool_spacer_r + 2, 0])
+    rotate([0, 0, 0])
+        spool_spacer();
 } else {
     projection()
     laser_mirror() {
