@@ -24,7 +24,6 @@ use<splitflap.scad>;
 character_list = get_character_list();
 color_list = [
     ["x", [255, 255, 255] / 255],
-    [" ", [0, 0, 0] / 255],
 ];
 
 
@@ -119,7 +118,7 @@ module _draw_letter(letter, flap_gap) {
         svg_path = str(svg_dir, "/", letter, ".svg");
         translate([offset_x, offset_y])
         scale([width, height, 0])
-            import(svg_path, center=true, $fn=letter_facet_number, convexity=10);
+            import(svg_path, $fn=letter_facet_number, convexity=10);
     } else {
         translate([0, -flap_height * height, 0]) {  // valign compensation
             scale([width, 1, 1]) {

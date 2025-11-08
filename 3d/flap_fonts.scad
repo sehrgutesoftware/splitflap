@@ -143,10 +143,10 @@ _font_settings = [
 
     "VV", [
         "svg_dir", "../../svg-font",
-        "height", 1,
-        "width", 1,
-        "offset_x", 0,
-        "offset_y", 0,
+        "height", .175,
+        "width", .175,
+        "offset_x", -55,
+        "offset_y", -88,
         "color_height", 1,
         "color_offset_y", 0,
     ],
