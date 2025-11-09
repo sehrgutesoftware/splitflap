@@ -146,7 +146,7 @@ _font_settings = [
         "height", .175,
         "width", .175,
         "offset_x", -55,
-        "offset_y", -88,
+        "offset_y", -88.5,
         "color_height", 1,
         "color_offset_y", 0,
     ],
