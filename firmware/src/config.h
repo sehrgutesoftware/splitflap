@@ -13,7 +13,6 @@
 #define NUM_MODULES (12)
 #endif
 
-
 // Whether to force a full rotation when the same letter is specified again
 #define FORCE_FULL_ROTATION true
 
@@ -55,17 +54,13 @@
 // };
 
 // Flap option 2: v2 flaps (52 per module)
-#define NUM_FLAPS (52)
-const uint8_t flaps[NUM_FLAPS] = {
-  ' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-  'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
-  'Z', 'g', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'r',
-  '.', '?', '-', '$', '\'', '#', 'y', 'p', ',', '!', '@', '&', 'w'
-};
+#define NUM_FLAPS (24)
+const uint8_t flaps[NUM_FLAPS] = {' ', '0', '1', '2', '3', '4', '5', '6',
+                                  '7', '8', '9', '-', ',', '.', '*', '%',
+                                  '+', '<', '=', '>', '$', 'B', 'E', 'x'};
 
-// Flap option 3: v2 flaps (limited 40-flap set using the first 40 flaps of the set)
-// #define NUM_FLAPS (40)
-// const uint8_t flaps[NUM_FLAPS] = {
+// Flap option 3: v2 flaps (limited 40-flap set using the first 40 flaps of the
+// set) #define NUM_FLAPS (40) const uint8_t flaps[NUM_FLAPS] = {
 //   ' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 //   'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
 //   'Z', 'g', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'r',
@@ -78,39 +73,37 @@ const uint8_t flaps[NUM_FLAPS] = {
 //   <FILL THIS IN!>
 // };
 
-
 // 4) Hardware configuration and features
 #ifndef SPLITFLAP_PIO_HARDWARE_CONFIG
-  // Note: these values are only used in the Arduino IDE. For PlatformIO,
-  // hardware configuration is set by the environment, in platformio.ini.
-  #define SPI_IO true
-  #define REVERSE_MOTOR_DIRECTION false
-  #define NEOPIXEL_DEBUGGING_ENABLED true
-  #define INA219_POWER_SENSE false
+// Note: these values are only used in the Arduino IDE. For PlatformIO,
+// hardware configuration is set by the environment, in platformio.ini.
+#define SPI_IO true
+#define REVERSE_MOTOR_DIRECTION false
+#define NEOPIXEL_DEBUGGING_ENABLED true
+#define INA219_POWER_SENSE false
 #endif
 
 // 5) Board-dependent Default Settings
 
 #if defined(__AVR_ATmega168__) || defined(__AVR_ATmega328P__)
-  #if SPI_IO
-  #define NEOPIXEL_PIN 6
-  #else
-  #define NEOPIXEL_PIN 3
-  #endif
-  #define MONITOR_SPEED 38400
+#if SPI_IO
+#define NEOPIXEL_PIN 6
+#else
+#define NEOPIXEL_PIN 3
+#endif
+#define MONITOR_SPEED 38400
 #elif defined(__AVR_ATmega2560__)
-  #define NEOPIXEL_PIN 5
-  #define MONITOR_SPEED 38400
+#define NEOPIXEL_PIN 5
+#define MONITOR_SPEED 38400
 #elif defined(ARDUINO_ESP8266_WEMOS_D1MINI)
-  #define NEOPIXEL_PIN (D8)
-  #define MONITOR_SPEED 38400
+#define NEOPIXEL_PIN (D8)
+#define MONITOR_SPEED 38400
 #elif defined(ESP32)
-  #define NEOPIXEL_PIN (13)
-  #define MONITOR_SPEED 230400
+#define NEOPIXEL_PIN (13)
+#define MONITOR_SPEED 115200
 #endif
 
 /*************************/
-
 
 /**
  * Suggested Pinouts
@@ -132,7 +125,8 @@ const uint8_t flaps[NUM_FLAPS] = {
  *
  * Arduino Mega 2560 - Basic IO - Up to 12 modules)
  *    Note the order of pins increases for some motors and decreases for others.
- *    Modules whose motor phase pins are in the opposite order are marked with a * below.
+ *    Modules whose motor phase pins are in the opposite order are marked with a
+ * * below.
  *
  *    A: Motor: F0-3 = pins A0-A3       Sensor: G0 = pin 41
  *    B: Motor: F4-7 = pins A4-A7       Sensor: G1 = pin 40
@@ -160,7 +154,6 @@ const uint8_t flaps[NUM_FLAPS] = {
  *     32 MOSI          (out)
  *
  */
-
 
 // Configuration validation and dependent settings
 #if NUM_MODULES < 1

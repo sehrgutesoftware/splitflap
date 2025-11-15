@@ -41,24 +41,34 @@ MQTTTask::MQTTTask(SplitflapTask& splitflap_task, DisplayTask& display_task, Log
 }
 
 void MQTTTask::connectWifi() {
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+#ifdef USE_ETHERNET
+    NetworkConfig::begin();
+    char buf[256];
+    snprintf(buf, sizeof(buf), "Ethernet connecting...");
+    display_task_.setMessage(0, String(buf));
+#else
+    NetworkConfig::begin(WIFI_SSID, WIFI_PASSWORD);
     // Disable WiFi sleep as it causes glitches on pin 39; see https://github.com/espressif/arduino-esp32/issues/4903#issuecomment-793187707
-    WiFi.setSleep(WIFI_PS_NONE);
+    NetworkConfig::setSleep(false);
 
     char buf[256];
-
     snprintf(buf, sizeof(buf), "Wifi connecting to %s", WIFI_SSID);
     display_task_.setMessage(0, String(buf));
+#endif
 
-    while (WiFi.status() != WL_CONNECTED) {
+    while (!NetworkConfig::isConnected()) {
         delay(1000);
-        logger_.log("Establishing connection to WiFi..");
+        logger_.log("Establishing connection to network..");
     }
 
+#ifdef USE_ETHERNET
+    snprintf(buf, sizeof(buf), "Connected, IP: %s", NetworkConfig::localIP().c_str());
+#else
     snprintf(buf, sizeof(buf), "Connected to network %s", WIFI_SSID);
+#endif
     logger_.log(buf);
 
-    snprintf(buf, sizeof(buf), "Wifi IP: %s", WiFi.localIP().toString().c_str());
+    snprintf(buf, sizeof(buf), "IP: %s", NetworkConfig::localIP().c_str());
     display_task_.setMessage(0, String(buf));
 }
 

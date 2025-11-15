@@ -17,11 +17,16 @@
 
 #include <Arduino.h>
 #include <PubSubClient.h>
+#ifdef USE_ETHERNET
+#include <ETH.h>
+#else
 #include <WiFi.h>
+#endif
 
 #include <json11.hpp>
 
 #include "../core/logger.h"
+#include "../core/network_config.h"
 #include "../core/splitflap_task.h"
 #include "../core/task.h"
 

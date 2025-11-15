@@ -15,53 +15,44 @@
 */
 #pragma once
 
-#include <Arduino.h>
+#include "config.h"
+
 #ifdef USE_ETHERNET
 #include <ETH.h>
 #else
 #include <WiFi.h>
 #endif
-#include <json11.hpp>
 
-#include "../core/logger.h"
 #include "../core/network_config.h"
 #include "../core/splitflap_task.h"
 #include "../core/task.h"
+#include "../core/tcp_stream.h"
 
-#if ENABLE_DISPLAY
-#include "display_task.h"
-#endif
+#include "serial_legacy_json_protocol.h"
+#include "serial_proto_protocol.h"
 
-class HTTPTask : public Task<HTTPTask> {
-  friend class Task<HTTPTask>; // Allow base Task to invoke protected run()
+class TcpTask : public Task<TcpTask>, public Logger {
+  friend class Task<TcpTask>; // Allow base Task to invoke protected run()
 
 public:
-#if ENABLE_DISPLAY
-  HTTPTask(SplitflapTask &splitflap_task, DisplayTask &display_task,
-           Logger &logger, const uint8_t task_core);
-#else
-  HTTPTask(SplitflapTask &splitflap_task, Logger &logger,
-           const uint8_t task_core);
-#endif
+  TcpTask(SplitflapTask &splitflap_task, const uint8_t task_core,
+          uint16_t port = 9000);
+  virtual ~TcpTask() {};
+
+  void log(const char *msg) override;
+
+  void sendSupervisorState(PB_SupervisorState &supervisor_state);
 
 protected:
   void run();
 
 private:
-  void connectWifi();
-  bool fetchData();
-  bool handleData(json11::Json json);
-
   SplitflapTask &splitflap_task_;
-#if ENABLE_DISPLAY
-  DisplayTask &display_task_;
-#endif
-  Logger &logger_;
-  WiFiClient wifi_client_;
-  uint32_t http_last_request_time_ = 0;
-  uint32_t http_last_success_time_ = 0;
+  uint16_t port_;
+  WiFiServer server_;
 
-  std::vector<String> messages_ = {};
-  uint8_t current_message_index_ = 0;
-  uint32_t last_message_change_time_ = 0;
+  QueueHandle_t log_queue_;
+  QueueHandle_t supervisor_state_queue_;
+
+  void handleClient(WiFiClient &client);
 };

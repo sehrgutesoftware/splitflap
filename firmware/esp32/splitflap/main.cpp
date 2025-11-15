@@ -21,10 +21,15 @@
 #include "config.h"
 
 #include "../core/configuration.h"
+#include "../core/network_config.h"
 #include "../core/splitflap_task.h"
 #include "debug_build_info.h"
 #include "display_task.h"
 #include "serial_task.h"
+
+#ifdef TCP_SERVER
+#include "tcp_task.h"
+#endif
 
 Configuration config;
 
@@ -47,7 +52,15 @@ MQTTTask mqttTask(splitflapTask, displayTask, serialTask, 0);
 
 #if HTTP
 #include "http_task.h"
+#if ENABLE_DISPLAY
 HTTPTask httpTask(splitflapTask, displayTask, serialTask, 0);
+#else
+HTTPTask httpTask(splitflapTask, serialTask, 0);
+#endif
+#endif
+
+#ifdef TCP_SERVER
+TcpTask tcpTask(splitflapTask, 0);
 #endif
 
 void setup() {
@@ -62,27 +75,35 @@ void setup() {
   if (loaded) {
     PB_PersistentConfiguration saved = config.get();
     uint16_t offsets[NUM_MODULES] = {};
-    for (uint8_t i = 0; i < min(saved.module_offset_steps_count, (pb_size_t)NUM_MODULES); i++) {
+    for (uint8_t i = 0;
+         i < min(saved.module_offset_steps_count, (pb_size_t)NUM_MODULES);
+         i++) {
       offsets[i] = saved.module_offset_steps[i];
     }
     splitflapTask.restoreAllOffsets(offsets);
   }
 
-  #if ENABLE_DISPLAY
+#if ENABLE_DISPLAY
   displayTask.begin();
-  #endif
+#endif
 
-  #if MQTT
+#if MQTT
   mqttTask.begin();
-  #endif
+#endif
 
-  #if HTTP
+#if HTTP
   httpTask.begin();
-  #endif
+#endif
 
-  #ifdef CHAINLINK_BASE
+#ifdef TCP_SERVER
+  // Initialize network before starting TCP task
+  NetworkConfig::begin();
+  tcpTask.begin();
+#endif
+
+#ifdef CHAINLINK_BASE
   baseSupervisorTask.begin();
-  #endif
+#endif
 
   logDebugBuildInfo(serialTask);
 
@@ -90,7 +111,4 @@ void setup() {
   vTaskDelete(NULL);
 }
 
-
-void loop() {
-  assert(false);
-}
+void loop() { assert(false); }
