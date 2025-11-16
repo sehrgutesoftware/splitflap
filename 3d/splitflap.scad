@@ -179,10 +179,10 @@ enclosure_wall_to_wall_width = thickness + spool_width_slop/2 + spool_width_clea
 enclosure_wall_to_wall_inner_width = enclosure_wall_to_wall_width - 2*thickness;
 
 
-front_mounting_hole_radius = m4_hole_diameter;
+front_mounting_hole_dia = m4_hole_diameter*1.6;
 front_mounting_hole_window_distance = 15; // distance from edge of window to center of mounting hole
 front_mounting_hole_inset = 20; // inset from the top/bottom edges
-enclosure_extra_width_for_mounting_holes = enable_front_mounting_holes ? (front_mounting_hole_radius + (front_mounting_hole_window_distance-15) + thickness) * 2 : 0;
+enclosure_extra_width_for_mounting_holes = enable_front_mounting_holes ? (front_mounting_hole_dia + (front_mounting_hole_window_distance-15) + thickness) * 2 : 0;
 
 // Width of the front panel
 enclosure_width = enclosure_wall_to_wall_width + 28byj48_chassis_height() + 28byj48_chassis_height_clearance - thickness - 28byj48_mount_bracket_height() + enclosure_extra_width_for_mounting_holes;
@@ -584,7 +584,7 @@ module enclosure_front_cutouts_2d(tool_diameter=0) {
                     front_window_right_inset - front_mounting_hole_window_distance + x*(front_window_width+2*front_mounting_hole_window_distance),
                     enclosure_height_lower - front_window_lower + front_window_height/2 + y * (front_window_height/2 - front_mounting_hole_inset),
                 ]) {
-                    circle(r=front_mounting_hole_radius/2, $fn=30);
+                    circle(r=front_mounting_hole_dia/2, $fn=30);
                 }
             }
         }
