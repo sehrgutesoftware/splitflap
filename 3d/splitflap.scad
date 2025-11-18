@@ -86,7 +86,7 @@ echo(num_flaps=num_flaps);
 
 // Ponoko kerf values are 0.2 mm for MDF and acrylic (all thicknesses)
 // Remember: it's better to underestimate (looser fit) than overestimate (no fit)
-kerf_width = 0.15;
+kerf_width = 0.17;
 
 // MDF, .120in nominal
 // https://www.ponoko.com/materials/mdf-fiberboard
