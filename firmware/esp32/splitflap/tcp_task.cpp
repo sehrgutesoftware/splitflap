@@ -14,6 +14,8 @@
    limitations under the License.
 */
 #include "tcp_task.h"
+#include <netinet/tcp.h>
+#include <sys/socket.h>
 
 #include "../core/network_config.h"
 #include "../core/tcp_stream.h"
@@ -48,19 +50,34 @@ void TcpTask::run() {
   }
 }
 
-void TcpTask::handleClient(WiFiClient &client) {
+void TcpTask::handleClient(
+    WiFiClient &client) { // Enable TCP keepalive on the socket
+  int fd = client.fd();
+  if (fd >= 0) {
+    int keepAlive = 1;
+    int keepIdle = 5;     // Start keepalives after 5 seconds of idle
+    int keepInterval = 5; // Send keepalive probes every 5 seconds
+    int keepCount = 3;    // Close connection after 3 failed probes
+
+    setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &keepAlive, sizeof(int));
+    setsockopt(fd, IPPROTO_TCP, TCP_KEEPIDLE, &keepIdle, sizeof(int));
+    setsockopt(fd, IPPROTO_TCP, TCP_KEEPINTVL, &keepInterval, sizeof(int));
+    setsockopt(fd, IPPROTO_TCP, TCP_KEEPCNT, &keepCount, sizeof(int));
+  }
+
   TcpStream stream(client);
 
   // Start in legacy protocol mode
-  SerialLegacyJsonProtocol *legacy_protocol = new SerialLegacyJsonProtocol(splitflap_task_, stream);
+  SerialLegacyJsonProtocol *legacy_protocol =
+      new SerialLegacyJsonProtocol(splitflap_task_, stream);
   SerialProtoProtocol *proto_protocol = nullptr;
 
   legacy_protocol->init();
   SerialProtocol *current_protocol = legacy_protocol;
 
   ProtocolChangeCallback protocol_change_callback =
-      [this, &current_protocol, &legacy_protocol,
-       &proto_protocol, &stream](uint8_t protocol) {
+      [this, &current_protocol, &legacy_protocol, &proto_protocol,
+       &stream](uint8_t protocol) {
         switch (protocol) {
         case SERIAL_PROTOCOL_LEGACY:
           if (proto_protocol != nullptr) {
@@ -68,7 +85,8 @@ void TcpTask::handleClient(WiFiClient &client) {
             proto_protocol = nullptr;
           }
           if (legacy_protocol == nullptr) {
-            legacy_protocol = new SerialLegacyJsonProtocol(splitflap_task_, stream);
+            legacy_protocol =
+                new SerialLegacyJsonProtocol(splitflap_task_, stream);
             legacy_protocol->init();
           }
           current_protocol = legacy_protocol;
